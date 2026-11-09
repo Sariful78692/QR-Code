@@ -1,0 +1,374 @@
+:root {
+    --ink: #162a46;
+    --muted: #718097;
+    --line: #e5ebf2;
+    --blue: #2366ee;
+    --bg: #f5f8fc
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Hind Siliguri', sans-serif
+}
+
+.shell {
+    max-width: 1200px;
+    margin: auto;
+    padding: 28px 32px
+}
+
+.hero {
+    height: 330px;
+    border-radius: 26px;
+    background: linear-gradient(112deg, #122c4e, #1d4b87 65%, #2366ee);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: 28px 56px
+}
+
+.brand {
+    font: 700 15px 'Plus Jakarta Sans';
+    position: relative;
+    z-index: 2
+}
+
+.brand-mark {
+    display: inline-grid;
+    place-items: center;
+    background: #38d8a3;
+    border-radius: 9px;
+    width: 29px;
+    height: 29px;
+    margin-right: 9px;
+    font-size: 23px;
+    vertical-align: middle
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 2;
+    margin-top: 38px;
+    max-width: 510px
+}
+
+.eyebrow,
+.section-label {
+    letter-spacing: 2px;
+    font: 700 11px 'Plus Jakarta Sans';
+    color: #7ce4c3;
+    margin: 0 0 12px
+}
+
+.hero h1 {
+    font: 800 47px/1.12 'Plus Jakarta Sans';
+    margin: 0 0 15px;
+    letter-spacing: -1px
+}
+
+.hero h1 span {
+    color: #7ce4c3
+}
+
+.hero-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #d1def1;
+    max-width: 480px;
+    margin: 0
+}
+
+.hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid #ffffff26
+}
+
+.orb-one {
+    width: 410px;
+    height: 410px;
+    right: -115px;
+    top: -160px;
+    background: #ffffff09
+}
+
+.orb-two {
+    width: 350px;
+    height: 350px;
+    right: 85px;
+    bottom: -265px;
+    background: #61e3bb12
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: 190px 1fr 1fr;
+    gap: 20px;
+    margin-top: -58px;
+    position: relative;
+    padding: 0 30px
+}
+
+.panel {
+    background: #fff;
+    border: 1px solid #eaf0f6;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 16px 35px #24487312
+}
+
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 19px;
+    margin-bottom: 22px
+}
+
+.section-label {
+    color: var(--blue);
+    margin-bottom: 4px
+}
+
+.panel h2 {
+    font: 700 22px 'Plus Jakarta Sans';
+    margin: 0
+}
+
+.lock {
+    background: #e7faf3;
+    color: #159870;
+    border-radius: 20px;
+    padding: 6px 11px;
+    font-size: 12px;
+    font-weight: 600
+}
+
+.qr-dot {
+    width: 11px;
+    height: 11px;
+    background: #7ce4c3;
+    border-radius: 50%;
+    margin-top: 12px
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 16px 0 7px
+}
+
+label span {
+    color: #ec6576
+}
+
+input,
+textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    padding: 12px 14px;
+    font: 400 15px 'Hind Siliguri';
+    color: var(--ink);
+    outline: none;
+    background: #fbfcfe;
+    transition: .2s
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px #2366ee16
+}
+
+textarea {
+    resize: vertical
+}
+
+.primary-btn,
+.download-btn {
+    border: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    font: 600 15px 'Hind Siliguri';
+    transition: .2s
+}
+
+.primary-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 24px;
+    background: var(--blue);
+    color: #fff;
+    padding: 13px 17px;
+    box-shadow: 0 7px 14px #2366ee33
+}
+
+.primary-btn:hover {
+    background: #1553ce;
+    transform: translateY(-1px)
+}
+
+.primary-btn b {
+    font: 24px Arial
+}
+
+.status {
+    font-size: 13px;
+    min-height: 18px;
+    margin: 10px 0 0
+}
+
+.status.error {
+    color: #d2485c
+}
+
+.status.success {
+    color: #16956f
+}
+
+.qr-panel {
+    display: flex;
+    flex-direction: column
+}
+
+.qr-stage {
+    min-height: 245px;
+    display: grid;
+    place-items: center;
+    background: #f7faff;
+    border: 1px dashed #cfdaea;
+    border-radius: 13px
+}
+
+.empty-qr {
+    text-align: center;
+    color: #91a0b5
+}
+
+.empty-icon {
+    font: 58px Arial;
+    color: #cbd7e7;
+    line-height: 1;
+    margin-bottom: 12px
+}
+
+.empty-qr p {
+    font-weight: 600;
+    margin: 0
+}
+
+.empty-qr small {
+    display: block;
+    font-size: 12px;
+    margin-top: 5px
+}
+
+.qr-stage canvas,
+.qr-stage img {
+    padding: 12px;
+    background: white;
+    border-radius: 6px
+}
+
+.result-info {
+    padding: 13px 4px 8px
+}
+
+.result-info strong,
+.result-info span {
+    display: block
+}
+
+.result-info strong {
+    font-size: 16px
+}
+
+.result-info span {
+    color: var(--muted);
+    font-size: 13px
+}
+
+.download-btn {
+    margin-top: 13px;
+    padding: 12px;
+    background: #eaf0ff;
+    color: #2366ee
+}
+
+.download-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed
+}
+
+.download-btn:not(:disabled):hover {
+    background: #dbe6ff
+}
+
+.privacy-note {
+    text-align: center;
+    color: #9aa8b9;
+    font-size: 11px;
+    margin: 14px 0 0
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    color: #9ba7b6;
+    font-size: 12px;
+    padding: 22px 30px 0
+}
+
+@media(max-width:700px) {
+    .shell {
+        padding: 15px
+    }
+
+    .hero {
+        height: auto;
+        padding: 25px 25px 95px
+    }
+
+    .hero h1 {
+        font-size: 35px
+    }
+
+    .hero-copy {
+        margin-top: 30px
+    }
+
+    .workspace {
+        grid-template-columns: 1fr;
+        padding: 0;
+        margin-top: -55px
+    }
+
+    .panel {
+        padding: 22px
+    }
+
+    .qr-stage {
+        min-height: 220px
+    }
+
+    footer {
+        padding-left: 8px;
+        padding-right: 8px
+    }
+}
+.sidebar{background:#122c4e;color:#fff;border-radius:18px;padding:22px 15px;height:max-content;box-shadow:0 16px 35px #24487320}.sidebar h3{font:700 17px 'Plus Jakarta Sans';margin:0 0 16px}.menu-item{display:block;width:100%;border:0;border-radius:8px;background:transparent;color:#d1def1;text-align:left;padding:11px 12px;margin:4px 0;cursor:pointer;font:600 14px 'Hind Siliguri'}.menu-item:hover,.menu-item.active{background:#2366ee;color:#fff}.contact-fields{margin-top:8px}
+.sidebar{position:sticky;top:24px;align-self:start;background:linear-gradient(165deg,#102947,#1d4b87);border:1px solid #ffffff18;padding:24px 14px;box-shadow:0 18px 36px #132d4b2e}.sidebar .section-label{color:#7ce4c3;font-size:10px}.sidebar h3{font-size:16px;letter-spacing:-.2px}.menu-item{border:1px solid transparent;transition:.2s ease}.menu-item:hover{background:#ffffff14;border-color:#ffffff24;transform:translateX(2px)}.menu-item.active{background:#38d8a3;color:#102947;box-shadow:0 7px 16px #38d8a344}.panel{box-shadow:0 18px 40px #24487316;transition:box-shadow .2s ease,transform .2s ease}.panel:hover{box-shadow:0 22px 45px #24487320}.form-panel,.qr-panel{min-width:0}.contact-fields select{width:100%;border:1px solid var(--line);border-radius:9px;padding:12px 14px;font:400 15px 'Hind Siliguri';color:var(--ink);background:#fbfcfe}.primary-btn,.download-btn{letter-spacing:.1px}.qr-stage{box-shadow:inset 0 0 0 1px #ffffff80}.result-info{border-left:3px solid #38d8a3;padding-left:12px}.scan-btn{width:100%}
+.sidebar{z-index:3}
+.hidden-field{display:none!important}
+@media(max-width:700px){.sidebar{position:relative;top:auto;width:100%;padding:16px}.menu-item{display:inline-block;width:auto;margin:3px 2px;padding:8px 11px}}

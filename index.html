@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="নাম, জন্মতারিখ ও ঠিকানা দিয়ে QR Code তৈরি করুন" />
+  <title>QR পরিচয়পত্র জেনারেটর</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="brand"><span class="brand-mark">⌁</span> QR পরিচয়পত্র</div>
+      <div class="hero-copy">
+        <p class="eyebrow">SMART PROFILE · SECURE · SIMPLE</p>
+        <h1>তথ্য দিন,<br><span>QR Code নিন।</span></h1>
+        <p class="hero-text">আপনার নাম, জন্মতারিখ ও ঠিকানা এক জায়গায় রাখুন। কয়েক সেকেন্ডে একটি শেয়ারযোগ্য QR Code তৈরি হবে।</p>
+      </div>
+      <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+    </section>
+
+    <section class="workspace">
+      <aside class="sidebar">
+        <p class="section-label">QR MENU</p>
+        <h3>Choose a type</h3>
+        <button class="menu-item active" type="button" data-type="profile">Profile</button>
+        <button class="menu-item" type="button" data-type="whatsapp">WhatsApp</button>
+        <button class="menu-item" type="button" data-type="facebook">Facebook</button>
+        <button class="menu-item" type="button" data-type="website">Website</button>
+        <button class="menu-item" type="button" data-type="email">Email</button>
+        <button class="menu-item" type="button" data-type="wifi">Wi-Fi</button>
+      </aside>
+      <div class="panel form-panel">
+        <div class="panel-heading"><div><p class="section-label">STEP 01</p><h2>আপনার তথ্য</h2></div><span class="lock">● নিরাপদ</span></div>
+        <form id="profileForm">
+          <label for="name">পুরো নাম <span>*</span></label>
+          <input id="name" name="name" type="text" placeholder="Enter Your Name" autocomplete="name" required maxlength="100" />
+          <label for="dob">জন্মতারিখ <span>*</span></label>
+          <input id="dob" name="dob" type="date" required />
+          <label for="documentLast4">Documents Number (Last 4 digits) <span>*</span></label>
+          <input id="documentLast4" name="documentLast4" type="text" inputmode="numeric" pattern="[0-9]{4}" placeholder="Enter last 4 digits" maxlength="4" required />
+          <label for="customText">Custom Text</label>
+          <textarea id="customText" name="customText" rows="3" placeholder="Scan করলে যে text দেখাবে" maxlength="500"></textarea>
+          <div id="contactFields" class="contact-fields"></div>
+          <label for="address">ঠিকানা <span>*</span></label>
+          <textarea id="address" name="address" rows="4" placeholder="Enter your address" required maxlength="500"></textarea>
+          <button class="primary-btn" type="submit"><span>QR Code তৈরি করুন</span><b>→</b></button>
+          <p id="status" class="status" role="status"></p>
+        </form>
+      </div>
+
+      <div class="panel qr-panel">
+        <div class="panel-heading"><div><p class="section-label">STEP 02</p><h2>আপনার QR Code</h2></div><span class="qr-dot"></span></div>
+        <div class="qr-stage" id="qrStage"><div class="empty-qr"><div class="empty-icon">▦</div><p>ফর্ম পূরণ করে QR Code তৈরি করুন</p><small>আপনার তথ্যের একটি compact profile এখানে দেখা যাবে</small></div></div>
+        <div class="result-info" id="resultInfo" hidden><strong id="resultName"></strong><span id="resultMeta"></span></div>
+        <button class="download-btn" id="downloadBtn" type="button" disabled>↓ &nbsp; QR Code ডাউনলোড</button>
+        <p class="privacy-note">আপনার তথ্য Google Sheet-এ সংরক্ষিত হবে এবং QR Code-এ থাকবে।</p>
+      </div>
+    </section>
+    <footer><span>© 2026 QR পরিচয়পত্র</span><span>তথ্যপ্রযুক্তি সহজ হোক</span></footer>
+  </main>
+</body>
+</html>
