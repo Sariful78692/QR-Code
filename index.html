@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="নাম, জন্মতারিখ ও ঠিকানা দিয়ে QR Code তৈরি করুন" />
-  <title>QR পরিচয়পত্র জেনারেটর</title>
+  <meta name="description" content="Create a QR Code with your name, date of birth and address" />
+  <title>QR Profile Generator</title>
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,11 +15,11 @@
 <body>
   <main class="shell">
     <section class="hero">
-      <div class="brand"><span class="brand-mark">⌁</span> QR পরিচয়পত্র</div>
+      <div class="brand"><span class="brand-mark">⌁</span> QR Profile</div>
       <div class="hero-copy">
         <p class="eyebrow">SMART PROFILE · SECURE · SIMPLE</p>
-        <h1>তথ্য দিন,<br><span>QR Code নিন।</span></h1>
-        <p class="hero-text">আপনার নাম, জন্মতারিখ ও ঠিকানা এক জায়গায় রাখুন। কয়েক সেকেন্ডে একটি শেয়ারযোগ্য QR Code তৈরি হবে।</p>
+        <h1>Enter your details,<br><span>Get a QR Code.</span></h1>
+        <p class="hero-text">Keep your name, date of birth and address in one place. Create a shareable QR Code in seconds.</p>
       </div>
       <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
     </section>
@@ -36,33 +36,33 @@
         <button class="menu-item" type="button" data-type="wifi">Wi-Fi</button>
       </aside>
       <div class="panel form-panel">
-        <div class="panel-heading"><div><p class="section-label">STEP 01</p><h2>আপনার তথ্য</h2></div><span class="lock">● নিরাপদ</span></div>
+        <div class="panel-heading"><div><p class="section-label">STEP 01</p><h2>Your Information</h2></div><span class="lock">● Secure</span></div>
         <form id="profileForm">
-          <label for="name">পুরো নাম <span>*</span></label>
+          <label for="name">Full Name <span>*</span></label>
           <input id="name" name="name" type="text" placeholder="Enter Your Name" autocomplete="name" required maxlength="100" />
-          <label for="dob">জন্মতারিখ <span>*</span></label>
+          <label for="dob">Date of Birth <span>*</span></label>
           <input id="dob" name="dob" type="date" required />
           <label for="documentLast4">Documents Number (Last 4 digits) <span>*</span></label>
           <input id="documentLast4" name="documentLast4" type="text" inputmode="numeric" pattern="[0-9]{4}" placeholder="Enter last 4 digits" maxlength="4" required />
           <label for="customText">Custom Text</label>
-          <textarea id="customText" name="customText" rows="3" placeholder="Scan করলে যে text দেখাবে" maxlength="500"></textarea>
+          <textarea id="customText" name="customText" rows="3" placeholder="Text to show when scanned" maxlength="500"></textarea>
           <div id="contactFields" class="contact-fields"></div>
-          <label for="address">ঠিকানা <span>*</span></label>
+          <label for="address">Address <span>*</span></label>
           <textarea id="address" name="address" rows="4" placeholder="Enter your address" required maxlength="500"></textarea>
-          <button class="primary-btn" type="submit"><span>QR Code তৈরি করুন</span><b>→</b></button>
+          <button class="primary-btn" type="submit"><span>Generate QR Code</span><b>→</b></button>
           <p id="status" class="status" role="status"></p>
         </form>
       </div>
 
       <div class="panel qr-panel">
-        <div class="panel-heading"><div><p class="section-label">STEP 02</p><h2>আপনার QR Code</h2></div><span class="qr-dot"></span></div>
-        <div class="qr-stage" id="qrStage"><div class="empty-qr"><div class="empty-icon">▦</div><p>ফর্ম পূরণ করে QR Code তৈরি করুন</p><small>আপনার তথ্যের একটি compact profile এখানে দেখা যাবে</small></div></div>
+        <div class="panel-heading"><div><p class="section-label">STEP 02</p><h2>Your QR Code</h2></div><span class="qr-dot"></span></div>
+        <div class="qr-stage" id="qrStage"><div class="empty-qr"><div class="empty-icon">▦</div><p>Complete the form to generate a QR Code</p><small>Your compact profile will appear here</small></div></div>
         <div class="result-info" id="resultInfo" hidden><strong id="resultName"></strong><span id="resultMeta"></span></div>
-        <button class="download-btn" id="downloadBtn" type="button" disabled>↓ &nbsp; QR Code ডাউনলোড</button>
-        <p class="privacy-note">আপনার তথ্য Google Sheet-এ সংরক্ষিত হবে এবং QR Code-এ থাকবে।</p>
+        <button class="download-btn" id="downloadBtn" type="button" disabled>↓ &nbsp; Download QR Code</button>
+        <p class="privacy-note">Your information will be saved to Google Sheets and included in the QR Code.</p>
       </div>
     </section>
-    <footer><span>© 2026 QR পরিচয়পত্র</span><span>তথ্যপ্রযুক্তি সহজ হোক</span></footer>
+    <footer><span>© 2026 QR Profile</span><span>Make information simple</span></footer>
   </main>
 </body>
 </html>

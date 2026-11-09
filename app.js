@@ -1,4 +1,4 @@
-const GOOGLE_SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw9BdiVKMOHSG-Ed_Z3rpVaJP3QVXfXKsbYTTCTuAi4C-2pruuIq0uwCHEKffnXRxWI/exec';
+const GOOGLE_SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyTa7tjMuCxboQyrp3mm5gP2rf1dejq4HKAGAqaRycAv3u7fxj0R9uScQBavAbCwEvi/exec';
 const form = document.getElementById('profileForm');
 const contactFields = document.getElementById('contactFields');
 const menuItems = document.querySelectorAll('.menu-item');
@@ -35,38 +35,37 @@ menuItems.forEach((item) => item.addEventListener('click', () => {
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const data = Object.fromEntries(new FormData(form).entries());
-  const record = { ...data, id: `QR-${Date.now()}`, createdAt: new Date().toISOString() };
+  const record = { ...data, type: selectedMenuType, id: `QR-${Date.now()}`, createdAt: new Date().toISOString() };
   statusEl.className = 'status';
-  statusEl.textContent = 'QR Code তৈরি হচ্ছে...';
+  statusEl.textContent = 'Generating QR Code...';
   renderQr(record);
   if (!GOOGLE_SHEET_ENDPOINT) {
     statusEl.className = 'status success';
-    statusEl.textContent = 'Demo mode: Google Sheet URL বসালে তথ্য সংরক্ষিত হবে।';
+    statusEl.textContent = 'Demo mode: Add a Google Sheet URL to save information.';
     return;
   }
   try {
     await fetch(GOOGLE_SHEET_ENDPOINT, { method: 'POST', mode: 'no-cors', body: JSON.stringify(record) });
     statusEl.className = 'status success';
-    statusEl.textContent = 'তথ্য সংরক্ষিত হয়েছে।';
+    statusEl.textContent = 'Information saved successfully.';
   } catch (error) {
     statusEl.className = 'status error';
-    statusEl.textContent = 'QR তৈরি হয়েছে, তবে Google Sheet-এ সংরক্ষণ হয়নি। URL/deployment check করুন।';
+    statusEl.textContent = 'QR created, but it was not saved to Google Sheets. Check the URL or deployment.';
   }
 });
 
 function renderQr(record) {
   qrStage.innerHTML = '';
   const content = [
-    'QR পরিচয়পত্র',
-    `Type: ${selectedMenuType}`,
-    `নাম: ${record.name}`,
-    `জন্মতারিখ: ${record.dob}`,
+    ...(selectedMenuType === 'profile' ? [] : ['QR Profile', `Type: ${selectedMenuType}`]),
+    `Name: ${record.name}`,
+    `Date of Birth: ${record.dob}`,
     `Documents Number (Last 4 digits): ${record.documentLast4}`,
     `Custom Text: ${record.customText || ''}`,
     record.contactValue ? `Contact: ${record.contactValue}` : '',
     record.contactMessage ? `Message/Subject: ${record.contactMessage}` : '',
-    `ঠিকানা: ${record.address}`,
-    `আইডি: ${record.id}`
+    `Address: ${record.address}`,
+    `ID: ${record.id}`
   ].join('\n');
   const wifiContent = selectedMenuType === 'wifi'
     ? `WIFI:T:${record.wifiSecurity || 'WPA'};S:${escapeWifi(record.wifiSsid)};P:${escapeWifi(record.wifiPassword)};;`
@@ -81,7 +80,7 @@ function renderQr(record) {
   qrStage.appendChild(image);
   document.getElementById('resultInfo').hidden = false;
   document.getElementById('resultName').textContent = record.name;
-  document.getElementById('resultMeta').textContent = `জন্মতারিখ: ${record.dob} · Documents Number: ${record.documentLast4} · ${record.id}`;
+  document.getElementById('resultMeta').textContent = `Date of Birth: ${record.dob} · Documents Number: ${record.documentLast4} · ${record.id}`;
 }
 
 function escapeWifi(value = '') {
