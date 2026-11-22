@@ -35,7 +35,7 @@ menuItems.forEach((item) => item.addEventListener('click', () => {
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const data = Object.fromEntries(new FormData(form).entries());
-  const record = { ...data, type: selectedMenuType, id: `QR-${Date.now()}`, createdAt: new Date().toISOString() };
+  const record = { ...data, type: selectedMenuType, createdAt: new Date().toISOString() };
   statusEl.className = 'status';
   statusEl.textContent = 'Generating QR Code...';
   renderQr(record);
@@ -64,8 +64,7 @@ function renderQr(record) {
     `Custom Text: ${record.customText || ''}`,
     record.contactValue ? `Contact: ${record.contactValue}` : '',
     record.contactMessage ? `Message/Subject: ${record.contactMessage}` : '',
-    `Address: ${record.address}`,
-    `ID: ${record.id}`
+    `Address: ${record.address}`
   ].join('\n');
   const wifiContent = selectedMenuType === 'wifi'
     ? `WIFI:T:${record.wifiSecurity || 'WPA'};S:${escapeWifi(record.wifiSsid)};P:${escapeWifi(record.wifiPassword)};;`
@@ -80,19 +79,40 @@ function renderQr(record) {
   qrStage.appendChild(image);
   document.getElementById('resultInfo').hidden = false;
   document.getElementById('resultName').textContent = record.name;
-  document.getElementById('resultMeta').textContent = `Date of Birth: ${record.dob} · Documents Number: ${record.documentLast4} · ${record.id}`;
+  document.getElementById('resultMeta').textContent = `Date of Birth: ${record.dob} · Documents Number: ${record.documentLast4}`;
 }
 
 function escapeWifi(value = '') {
   return value.replace(/([\\;,:])/g, '\\$1');
 }
 
-downloadBtn.addEventListener('click', () => {
+downloadBtn.addEventListener('click', async () => {
   if (!qrImageUrl) return;
-  const link = document.createElement('a');
-  link.href = qrImageUrl;
-  link.download = 'qr-porichoypotro.png';
-  link.target = '_blank';
-  link.click();
+  downloadBtn.disabled = true;
+  const originalText = downloadBtn.textContent;
+  downloadBtn.textContent = 'Downloading...';
+  try {
+    const response = await fetch(qrImageUrl, { mode: 'cors' });
+    if (!response.ok) throw new Error('QR image download failed');
+    const blobUrl = URL.createObjectURL(await response.blob());
+    const link = document.createElement('a');
+    link.href = blobUrl;
+    link.download = 'qr-porichoypotro.png';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(blobUrl);
+  } catch (error) {
+    // Do not open a new tab when the provider blocks a cross-origin download.
+    const link = document.createElement('a');
+    link.href = qrImageUrl;
+    link.download = 'qr-porichoypotro.png';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  } finally {
+    downloadBtn.disabled = false;
+    downloadBtn.textContent = originalText;
+  }
 });
 
