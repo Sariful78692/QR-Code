@@ -6,6 +6,7 @@ const statusEl = document.getElementById('status');
 const qrStage = document.getElementById('qrStage');
 const downloadBtn = document.getElementById('downloadBtn');
 let qrImageUrl = '';
+let qrFileName = 'qr-porichoypotro.png';
 let selectedMenuType = 'profile';
 const profileFieldIds = ['name', 'dob', 'documentLast4', 'customText', 'address'];
 const menuFieldTemplates = {
@@ -70,6 +71,14 @@ function renderQr(record) {
     ? `WIFI:T:${record.wifiSecurity || 'WPA'};S:${escapeWifi(record.wifiSsid)};P:${escapeWifi(record.wifiPassword)};;`
     : content;
   qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=H&margin=0&data=${encodeURIComponent(wifiContent)}`;
+  const safeName = (record.name || 'profile')
+    .trim()
+    .replace(/[<>:"/\\|?*\x00-\x1F]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^[-.]+|[-.]+$/g, '')
+    .slice(0, 80) || 'profile';
+  qrFileName = `${safeName}-QR.png`;
   const image = document.createElement('img');
   image.src = qrImageUrl;
   image.alt = 'Generated QR Code';
@@ -97,7 +106,7 @@ downloadBtn.addEventListener('click', async () => {
     const blobUrl = URL.createObjectURL(await response.blob());
     const link = document.createElement('a');
     link.href = blobUrl;
-    link.download = 'qr-porichoypotro.png';
+    link.download = qrFileName;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -106,7 +115,7 @@ downloadBtn.addEventListener('click', async () => {
     // Do not open a new tab when the provider blocks a cross-origin download.
     const link = document.createElement('a');
     link.href = qrImageUrl;
-    link.download = 'qr-porichoypotro.png';
+    link.download = qrFileName;
     document.body.appendChild(link);
     link.click();
     link.remove();
